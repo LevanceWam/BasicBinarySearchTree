@@ -12,5 +12,9 @@ A binary search tree is a special kind of binary tree in which all the values in
 
 We have a couple of different algorithms for travesing binary trees this algorithm falls into 2 catergories. Breadth First which is also known as level order traversal. Then we have Depth first we have 3 depth first algorithms Pre-order, In-order, and Post-order. The different between these algorithms is in the order in which we visit the root node along with the right and left subtrees.
 
---
+---
+
+```bash
+npm install basicBinarySearchTree --save
+```
 
