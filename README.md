@@ -41,23 +41,11 @@ tree.find(4);
 tree.traversePreOrder();
 // --> prints 7, 4, 9
 
-/*
-in preorder all we did was print the root and moved on to the left subtree and printed its root. We went to the left again and printed that node then made our way to the right. After this subtree is done we went to the main root and repeated the same process for the right subtree
-*/
-
 tree.traverseInOrder();
 // --> prints 4, 7, 9
 
-/*
-This is the same concept as the method above expect this one prints in this order left, root, right. So with this algorithm we are going to start from the farest left node and traverse from that left node it's root then to the right node.
-*/
-
 tree.traversePostOrder();
 // --> prints 4, 9, 7
-
-/*
-This is the same concept as the method above expect this one prints in this order left, right, root
-*/
 
 tree.height();
 // --> returns 1
@@ -79,9 +67,6 @@ tree.equals(tree2)
 
 tree.isBinary();
 // --> returns false 
-
-tree.swapRoot();
-// --> makes the left subtree the right subtree and vise versa
 
 tree.kDistance(1);
 // --> returns [4, 9]
@@ -105,3 +90,67 @@ tree.getAncestors(9);
 // --> returns 7
 
 ```
+
+## API
+
+**All of the methods Avaliable for a Binary Tree instance:**
+
+- ### insert():
+    Inserts a new node into the tree. If tree is empty this will become the main root of the tree. If not if it is less than the main root it will go on to be the left child or if greater than it will be the right child.
+
+- ### find(value):
+    This looks to see if the value inserted is in the tree.
+
+- ### traversePreOrder():
+    In preorder all we did was print the root and moved on to the left subtree and printed its root. We went to the left again and printed that node then made our way to the right. After this subtree is done we went to the main root and repeated the same process for the right subtree.
+
+- ### traverseInOrder():
+    This is the same concept as the method above expect this one prints in this order left, root, right. So with this algorithm we are going to start from the farest left node and traverse from that left node it's root then to the right node.
+
+- ### traversePostOrder():
+    This is the same concept as the method above expect this one prints in this order left, right, root.
+
+- ### tree.height();
+    This returns the height of the tree.
+
+- ### tree.min();
+    This returns the smallest value in the tree using recursion.
+
+- ### tree.max();
+    This returns the largest value in a tree using recursion.
+
+- ### tree.minBinSearch();
+    This returns the smallest value in the tree using a faster algorithm this
+    is for if the tree is a binary search tree.
+
+- ### tree.maxBinSearch();
+    This returns the largest value in the tree using a faster algorithm this
+    is for if the tree is a binary search tree.
+
+- ### tree.equals(other)
+    This compares another tree object to see if the nodes matches.
+
+- ### tree.isBinary():
+    this checks to see if the tree is a binary tree or binary search tree.
+    this is a good tool for interviews because at times we need to find out if a tree is one or the other options.
+
+- ### tree.kDistance(value):
+    This returns all of the nodes that are a certian distance away from the main root.
+
+- ### tree.traverseLevelOrder():
+    This prints all of the nodes level by level.
+
+- ### tree.getSize():
+    This returns the amount of nodes in the tree.
+
+- ### tree.countLeaves():
+    This counts all of the leafs or all of the nodes at the bottom of the tree.
+
+- ### tree.contains(value):
+    Checks to see the value inserted is in the tree this is done by using recursion.
+
+- ### tree.areSiblings(first, second):
+    This check to see if a root has these 2 values as children
+
+- ### tree.getAncestors(value):
+    This returns all of the roots that are before this node

@@ -127,12 +127,6 @@ class Tree {
         return this[isBinaryAlgorithm](this.root, Number.MIN_VALUE, Number.MAX_VALUE);
      }
 
-     swapRoot(){
-         let temp = this.root.leftChild;
-         this.root.leftChild = this.root.rightChild;
-         this.root.rightChild = temp;
-     }
-
      kDistance(distance){
         let list = [];
         this[kDistanceAlgorithm](this.root, distance, list);
