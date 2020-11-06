@@ -60,7 +60,48 @@ This is the same concept as the method above expect this one prints in this orde
 */
 
 tree.height();
-// --> This returns 1
+// --> returns 1
 
+tree.min();
+// --> returns 4
+
+tree.max();
+// --> returns 9
+
+tree.minBinSearch();
+// --> returns 4
+
+tree.maxBinSearch();
+// --> returns 9
+
+tree.equals(tree2)
+// --> returns false
+
+tree.isBinary();
+// --> returns false 
+
+tree.swapRoot();
+// --> makes the left subtree the right subtree and vise versa
+
+tree.kDistance(1);
+// --> returns [4, 9]
+
+tree.traverseLevelOrder();
+// --> returns 7, 4, 9
+
+tree.getSize();
+// --> returns 3
+
+tree.countLeaves();
+// --> returns 2
+
+tree.contains(5);
+// --> returns false
+
+tree.areSiblings(4, 9);
+// --> returns true
+
+tree.getAncestors(9);
+// --> returns 7
 
 ```
