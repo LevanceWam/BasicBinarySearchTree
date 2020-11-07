@@ -134,8 +134,11 @@ class Tree {
      }
 
      traverseLevelOrder(){
-         for(let i = 0; i <= this.height(); i++){
-             this.kDistance(i);
+        for(let i = 0; i <= this.height(); i++){
+            let list = this.kDistance(i);
+            for(let value of list){
+                console.log(value)
+            }
          }
      }
 

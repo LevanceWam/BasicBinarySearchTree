@@ -1,0 +1,19 @@
+{
+  "name": "basic-binarytree",
+  "version": "1.0.1",
+  "description": "A javascript implementation of a binary tree",
+  "main": "tree.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LevanceWam/BasicBinarySearchTree.git"
+  },
+  "author": "Levance Wamley",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/LevanceWam/BasicBinarySearchTree/issues"
+  },
+  "homepage": "https://github.com/LevanceWam/BasicBinarySearchTree#readme"
+}
