@@ -219,15 +219,24 @@ class Tree {
      [PreOrderAlgorithm](root){
          //this is the base condition so the recursive function knows when to stop
         if (root == null) return;
-
+        /*
+            * Here we are going to visit and print the nodes in the this order
+            * root, left, right
+            * so we go from root to the left child print all of the nodes on the left side
+        */
          console.log(root.value);
          this[PreOrderAlgorithm](root.leftChild);
          this[PreOrderAlgorithm](root.rightChild);
      }
 
      [InOrderAlgorithm](root){
+         // Base Condition
         if (root == null ) return;
-
+         /*
+            * Here we are going to visit and print the nodes in the this order
+            * left, root, right
+            * Here we start from the far left node then we go to the root of the node then to the right node
+        */
         this[InOrderAlgorithm](root.leftChild);
         console.log(root.value);
         this[InOrderAlgorithm](root.rightChild);
@@ -235,14 +244,22 @@ class Tree {
 
      [PostOrderAlgorithm](root){
         if (root == null ) return;
-
+        /*
+            * Here we are going to visit and print the nodes in the this order
+            * left, right, root
+            * Here we start from the far left node then we go to the righy of the node then to the root 
+        */
         this[PostOrderAlgorithm](root.leftChild);
         this[PostOrderAlgorithm](root.rightChild);
         console.log(root.value);
      }
 
      [heightAlgorithm](root){
+        //  Base Condition
+        // if this is the bottom of the tree return 0 for the height
          if (this[isLeaf](root)) return 0;
+
+        //  which ever side has the higher height we add 1 and return it 
          return 1 + Math.max(this[heightAlgorithm](root.leftChild), this[heightAlgorithm](root.rightChild));
      }
 
@@ -303,12 +320,18 @@ class Tree {
      }
 
      [kDistanceAlgorithm](root, distance,list){
+        // base condition
         if (root == null) return;
+        /**
+         * Wherever distance hits 0 we want to push all of the nodes in that level into an array
+         * once we push all of the nodes we return to stop executing the function
+         */
         if (distance == 0) {
             list.push(root.value);
             return;
         }
 
+        // This will traverse the list by going down a level in each branch and grabbing the nodes 
         this[kDistanceAlgorithm](root.leftChild, distance-1,list);
         this[kDistanceAlgorithm](root.rightChild, distance-1,list);
      }
@@ -325,25 +348,50 @@ class Tree {
      }
 
      [getAncestorsAlgorithm](root, value, array){
+         // base condition
          if (root == null) return;
+         // Checks to see if the value exist
          if(!this.contains(value)) throw new Error('This number is not in the tree');
 
+         /**
+          * we need to find a way to traverse the list and collect the values that comes before the 
+          * value we inserted
+          */
+
+         // as long as root.value is not null we will keep executing this statement
          while (root.value != null){
+             // if the value is smaller than the current root we are going to push the current root in a array
             if (value < root.value){
                 array.push(root.value);
+                // Once we push it we go to the next node 
                 this[getAncestorsAlgorithm](root.leftChild, value, array);
             }
+            // if the value is greater than the current root we are going to push the current root in a array
             if (value > root.value){
                 array.push(root.value);
+                 // Once we push it we go to the next node 
                 this[getAncestorsAlgorithm](root.rightChild, value, array);
             }
+            // exit the method with all the ancestors
             return;
          }
      }
 
      [isLeaf](node){
+         // This checks to see if this is the last node in the branch
          return (node.leftChild == null || node.rightChild == null);
      }
-}   
+} 
+
+const tree = new Tree();
+tree.insert(7)
+tree.insert(4)
+tree.insert(9)
+tree.insert(1)
+tree.insert(6)
+tree.insert(8)
+tree.insert(10)
+
+console.log(tree.traversePostOrder())
 
 module.exports = Tree;
