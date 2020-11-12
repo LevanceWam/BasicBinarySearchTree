@@ -295,16 +295,21 @@ class Tree {
 
      [countLeavesAlgorithm](root){
         if (root == null) return 0;
+        // if a nodes left and right child is 0 add 1
         if (root.leftChild == null && root.rightChild == null) return 1;
         
+        //add all of the nodes from the left and right subtrees
         return this[countLeavesAlgorithm](root.leftChild) + this[countLeavesAlgorithm](root.rightChild);
      }
 
      [containsAlgorithm](root, value){
+         // base condition
          if (root == null) return false;
          
          if(root != null){
+             //returns true or false if the value is not in the list
              return root.value == value
+             //traverse the list
              || this[containsAlgorithm](root.leftChild,value)
              || this[containsAlgorithm](root.rightChild,value);
          }
@@ -392,6 +397,6 @@ tree.insert(6)
 tree.insert(8)
 tree.insert(10)
 
-console.log(tree.traversePostOrder())
+console.log(tree.contains(3))
 
 module.exports = Tree;
