@@ -6,6 +6,18 @@ class Node{
     }
 }
 
+/*********************** Private Members ********************************/
+
+/*
+* In ES6 we have a primitive type called symbol
+* A symbol is a function we call to generate a symbol
+* A symbol is essentially a unqiue indentifier everytime we call this function we get a new unqiue identifier.
+* if we compare a symbol to a symbol we will get false because they are not the same 
+* everytime we call a symbol function we get a new, unqiue value
+* we can use this unqiue value as the property name for an object
+* We are using these private members to follow the rules of abstraction.
+*/
+
 const PreOrderAlgorithm = Symbol();
 const InOrderAlgorithm = Symbol();
 const PostOrderAlgorithm = Symbol();
@@ -27,11 +39,21 @@ class Tree {
          this.size = 0;
      }
 
+     /*********************** Public Methods ********************************/
+     /*
+        * These are the methods we want the user to interact with and use 
+        * a lot of these methods will call on the private method to execute them and to get a result
+        * we do this because we don't want to overwhelm the user and we want them to use the object 
+        * as intended we want to make sure they use it correctly with out any issues.
+     */
+
      insert(value){
+         // Calling the node class to insert a new object with this value into the tree.
+         // Incrementing the size of tree with the execution of this method
         let newNode = new Node(value);
         this.size++;
         
-
+        // if the main root of this object is null set the root to the new object and stop the execution
          if(this.root == null){
              this.root = newNode;
              return;
@@ -39,7 +61,11 @@ class Tree {
 
          let current = this.root;
          
+         // To insert another node into this class we need to traverse the tree to find a empty child
+         // so we are making a infinite loop so we can find a parent for the node 
          while (true) {
+            // once the node meets the requirements to be given a parent
+            // we are going to store it and break out of the loop
              if (value < current.value){
                  if (current.leftChild == null){
                      current.leftChild = newNode;
@@ -56,19 +82,26 @@ class Tree {
          }
      }
 
+     // Like in the insert method we have to traverse the tree to find the value
      find(value){
          let current = this.root;
 
+         // We are going to traverse the list until we hit the end
          while(current != null){
+            // while we are traversing we are going to compare the value of the value we are searching for
+             // if the value we are looking for less than the current value we are going to move done the left side of the tree
+             // if greater we go to the right
              if(value < current.value) current = current.leftChild;
              else if (value > current.value) current = current.rightChild;
+             // if either of the statements above do not execute then we found the value we are looking for.
              else return true;   
          }
-
+         // if we make it here then the value we are looking for doesn't exist
          return false;
      }
 
      traversePreOrder(){
+         // calling a recursive private method
          this[PreOrderAlgorithm](this.root);
      }
 
@@ -85,6 +118,7 @@ class Tree {
          return this[heightAlgorithm](this.root);
      }
 
+     // this method runs in O(n) explained in minimumAlgorithm
      min(){
          return this[minimumAlgorithm](this.root);
      }
@@ -93,24 +127,34 @@ class Tree {
          return this[maximumAlgorithm](this.root);
      }
 
+     // this version of find the minimum value is made specific for binary trees
+     // the run time for this method is O(log n) compared to the O(n)
+     // here we are cutting the list in half because we know that the smaller values are in the left subtree
+
      minBinSearch(){
          if (this.root == null) throw new Error('The tree is empty');
 
          let current = this.root;
          let last = current ;
+
+         // We are going to traverse the list until we hit null
          while (current != null){
+             // we set last to current before we have it go on to the next node 
+             // so when current hits null, last will be the final node
              last = current;
              current = current.leftChild;
          }
          return last.value;
      }
 
+     // similar to the minBinSearch with a few changes
      maxBinSearch(){
          if (this.root == null) throw new Error('The tree is empty');
 
          let current = this.root;
          let last = current ;
          while (current != null){
+             //instead of going to the left we are going to the right
              last = current;
              current = current.rightChild;
          }
@@ -134,6 +178,7 @@ class Tree {
      }
 
      traverseLevelOrder(){
+         //we are using a for loop to give us every node
         for(let i = 0; i <= this.height(); i++){
             let list = this.kDistance(i);
             for(let value of list){
@@ -164,7 +209,15 @@ class Tree {
         console.log(array)
      }
 
+     /*********************** Private Methods ********************************/
+     /*
+        * Here is the backbone to majority of the functions we are using above
+        * we want to make sure that the user doesn't have access to this 
+     */
+     
+
      [PreOrderAlgorithm](root){
+         //this is the base condition so the recursive function knows when to stop
         if (root == null) return;
 
          console.log(root.value);
