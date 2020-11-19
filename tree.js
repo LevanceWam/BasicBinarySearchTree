@@ -32,6 +32,7 @@ const isLeaf = Symbol();
 const containsAlgorithm = Symbol();
 const areSiblingAlgorithm = Symbol();
 const getAncestorsAlgorithm = Symbol();
+const inOrderSuccesor = Symbol()
 
 class Tree {
      constructor(root=null){
@@ -209,6 +210,27 @@ class Tree {
         console.log(array)
      }
 
+     findInOrderSuccesor(value){
+         /**
+         * This method returns the next node of the given value in a in-order traversal
+         */
+
+         // checks to see if the value is in the tree before we traverse it.
+         if(!this.contains(value)) throw new Error('This value is not in the tree.')
+
+         let array = [];
+         this[inOrderSuccesor](this.root, array);
+        
+         // get the index of the value inserted then add one to it to find the successor.
+         let index = array.indexOf(value)+1;
+
+         // if we hit the last node we are going to simply return here
+         if (index === array.length) return;
+
+         // return the successor.
+         return array[index];
+     }
+
      /*********************** Private Methods ********************************/
      /*
         * Here is the backbone to majority of the functions we are using above
@@ -382,21 +404,19 @@ class Tree {
          }
      }
 
+     [inOrderSuccesor](root, array){
+         // Base condition
+         if (root == null) return;         
+         
+         this[inOrderSuccesor](root.leftChild, array);
+         array.push(root.value);
+         this[inOrderSuccesor](root.rightChild, array);  
+     }
+
      [isLeaf](node){
          // This checks to see if this is the last node in the branch
          return (node.leftChild == null || node.rightChild == null);
      }
 } 
-
-const tree = new Tree();
-tree.insert(7)
-tree.insert(4)
-tree.insert(9)
-tree.insert(1)
-tree.insert(6)
-tree.insert(8)
-tree.insert(10)
-
-console.log(tree.contains(3))
 
 module.exports = Tree;

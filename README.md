@@ -89,6 +89,9 @@ tree.areSiblings(4, 9);
 tree.getAncestors(9);
 // --> returns 7
 
+tree.findInOrderSuccesor(7);
+// --> returns 9
+
 ```
 
 ## API
@@ -154,3 +157,6 @@ tree.getAncestors(9);
 
 - ### tree.getAncestors(value):
     This returns all of the roots that are before this node
+
+- ### tree.findInOrderSuccesor(value):
+    This method returns the next node of the given value in a in-order traversal
